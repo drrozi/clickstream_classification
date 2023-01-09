@@ -92,8 +92,24 @@ dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test,
 dtw_disp.figure_.suptitle("ROC Vergleich")
 plt.show()
 
+# kNN with Cross Validation
+from sklearn.model_selection import cross_val_score, StratifiedKFold
 
+skf = StratifiedKFold(n_splits=5)
+cv_trafre = cross_val_score(TraFrePipeline, X, y, cv=skf, scoring='roc_auc')
+print("TraFre")
+print(cv_trafre)
+print("cv_scores mean: {}".format(np.mean(cv_trafre)))
 
+cv_df= cross_val_score(DiscFrechetPipeline, X, y, cv=skf, scoring='roc_auc')
+print("DF")
+print(cv_df)
+print("cv_scores mean: {}".format(np.mean(cv_df)))
+
+cv_ddtw= cross_val_score(DiscDTWPipeline, X, y, cv=skf, scoring='roc_auc')
+print("DDTW")
+print(cv_ddtw)
+print("cv_scores mean: {}".format(np.mean(cv_ddtw)))
 
 
 
