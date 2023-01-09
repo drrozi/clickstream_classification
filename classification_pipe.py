@@ -90,7 +90,11 @@ fre_disp = RocCurveDisplay.from_estimator(DiscFrechetPipeline, X_test, y_test,
 dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test,
                                           name="DDTW", ax=tra_disp.ax_)
 dtw_disp.figure_.suptitle("ROC Vergleich")
-plt.show()
+
+plt.xlabel('False positive rate')
+plt.ylabel('True positive rate')
+plt.savefig('FFF2013J')
+#plt.show()
 
 # kNN with Cross Validation
 from sklearn.model_selection import cross_val_score, StratifiedKFold
