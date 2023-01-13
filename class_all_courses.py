@@ -8,7 +8,7 @@ import Fred as fred
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsClassifier
-
+import re
 import glob
 from collections import defaultdict
 
@@ -59,8 +59,20 @@ def courses(directory):
         # kNN for trafre
         from my_dists import trafre
         TraFrePipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric=trafre))])
+        
+        # kNN for cityblock
+        CityPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='cityblock'))])
 
-        mypipeline = [TraFrePipeline, DiscFrechetPipeline, DiscDTWPipeline]
+        # kNN for euclidean
+        EucPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='euclidean'))])
+        
+        # kNN for correlation
+        CorPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='correlation'))])
+        
+        # kNN for cosine
+        CosPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='cosine'))])
+
+        mypipeline = [TraFrePipeline, DiscFrechetPipeline, DiscDTWPipeline, CityPipeline, EucPipeline, CorPipeline, CosPipeline]
         for mypipe in mypipeline:
             mypipe.fit(X_train, y_train)
 
@@ -68,15 +80,30 @@ def courses(directory):
         from sklearn.metrics import RocCurveDisplay
         import matplotlib.pyplot as plt
 
-        tra_disp = RocCurveDisplay.from_estimator(TraFrePipeline, X_test, y_test, name="TraFre")
-        fre_disp = RocCurveDisplay.from_estimator(DiscFrechetPipeline, X_test, y_test, 
-                                                  name="DF", ax=tra_disp.ax_)
-        dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test, 
-                                                  name="DDTW", ax=tra_disp.ax_)
-        dtw_disp.figure_.suptitle("ROC Vergleich für Kurs " + course.strip(directory))
-        plt.xlabel('False positive rate')
-        plt.ylabel('True positive rate')
-        plt.savefig(course.strip(directory))
+        fig, ax = plt.subplots(figsize=(10, 10))
+
+        tra_disp = RocCurveDisplay.from_estimator(TraFrePipeline, X_test, y_test,
+                                                name="TraFre", ax=ax)
+        fre_disp = RocCurveDisplay.from_estimator(DiscFrechetPipeline, X_test, y_test,
+                                                name="DF", ax=ax)
+        dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test,
+                                                name="DDTW", ax=ax)
+        city_disp = RocCurveDisplay.from_estimator(CityPipeline, X_test, y_test,
+                                                name="City", ax=ax)
+        euc_disp = RocCurveDisplay.from_estimator(EucPipeline, X_test, y_test,
+                                                name="Euc", ax=ax)
+        cor_disp = RocCurveDisplay.from_estimator(CorPipeline, X_test, y_test,
+                                                name="Cor", ax=ax)
+        cos_disp = RocCurveDisplay.from_estimator(CosPipeline, X_test, y_test,
+                                                name="Cos", ax=ax)
+
+        plt.axis('square')
+        plt.ylabel('True Positive Rate')
+        plt.xlabel('False Positive Rate')
+        plt.title("ROC - Vergleich" + re.sub(directory, '', course))
+        plt.legend(loc='lower right')
+        plt.plot([0, 1], [0, 1],'k:')
+        plt.savefig(re.sub(directory,'', course) + '.pdf', dpi='figure', format='pdf', backend='pgf')
 
 
 if __name__ == "__main__":
