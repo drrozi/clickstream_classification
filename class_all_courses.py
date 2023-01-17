@@ -98,7 +98,7 @@ def courses(directory):
         plt.axis('square')
         plt.ylabel('True Positive Rate')
         plt.xlabel('False Positive Rate')
-        plt.title("ROC - Vergleich" + re.sub(directory, '', course))
+        plt.title("ROC - Vergleich für Kurs " + re.sub(directory, '', course))
         plt.legend(loc='lower right')
         plt.plot([0, 1], [0, 1],'k:')
         plt.savefig(re.sub(directory,'', course) + '.pdf', dpi='figure', format='pdf', backend='pgf')
