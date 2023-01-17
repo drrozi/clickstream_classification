@@ -8,9 +8,12 @@ import Fred as fred
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import RocCurveDisplay
+import matplotlib.pyplot as plt
 import re
 import glob
 from collections import defaultdict
+from my_dists import disc_dtw, disc_frechet, window_ddtw, window_disc_frechet
 
 def courses(directory):
 
@@ -47,55 +50,50 @@ def courses(directory):
                                                             random_state=42, stratify=y)
 
         # Classification pipelines
+        nachbar = 1
 
-        #kNN for Discrete Frechet
-        from my_dists import disc_frechet
-        DiscFrechetPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric=disc_frechet))])
-
+        # kNN for Manhattan Distance 
+        CityPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='cityblock'))])
+        # kNN for Euclidean Distance 
+        EucPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='euclidean'))])
+        # kNN for Chebychev Distance 
+        ChebPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='chebyshev'))])
+        # kNN for Discrete Frechet
+        DiscFrechetPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
+                                                                       metric=disc_frechet))])
         # kNN for Discrete Dynamic Time Warping
-        from my_dists import disc_dtw
-        DiscDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric=disc_dtw))])
+        DiscDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric=disc_dtw))])
+        # kNN for Discrete Frechet with traversal constraint
+        WDFPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
+                                                               metric=window_disc_frechet))])
+        # knn for DDTW with traversal constraint
+        WDDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
+                                                                 metric=window_ddtw))])
 
-        # kNN for trafre
-        from my_dists import trafre
-        TraFrePipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric=trafre))])
-        
-        # kNN for cityblock
-        CityPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='cityblock'))])
 
-        # kNN for euclidean
-        EucPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='euclidean'))])
-        
-        # kNN for correlation
-        CorPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='correlation'))])
-        
-        # kNN for cosine
-        CosPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=1, metric='cosine'))])
+        mypipeline = [CityPipeline, EucPipeline, ChebPipeline, DiscFrechetPipeline, DiscDTWPipeline,
+                      WDFPipeline, WDDTWPipeline]
 
-        mypipeline = [TraFrePipeline, DiscFrechetPipeline, DiscDTWPipeline, CityPipeline, EucPipeline, CorPipeline, CosPipeline]
         for mypipe in mypipeline:
             mypipe.fit(X_train, y_train)
 
         # ROC
-        from sklearn.metrics import RocCurveDisplay
-        import matplotlib.pyplot as plt
-
         fig, ax = plt.subplots(figsize=(10, 10))
 
-        tra_disp = RocCurveDisplay.from_estimator(TraFrePipeline, X_test, y_test,
-                                                name="TraFre", ax=ax)
+        city_disp = RocCurveDisplay.from_estimator(CityPipeline, X_test, y_test,
+                                                name="Manhattan", ax=ax)
+        euc_disp = RocCurveDisplay.from_estimator(EucPipeline, X_test, y_test,
+                                                name="Euclidean", ax=ax)
+        che_disp = RocCurveDisplay.from_estimator(ChebPipeline, X_test, y_test,
+                                                name="Maximum", ax=ax)
         fre_disp = RocCurveDisplay.from_estimator(DiscFrechetPipeline, X_test, y_test,
                                                 name="DF", ax=ax)
         dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test,
                                                 name="DDTW", ax=ax)
-        city_disp = RocCurveDisplay.from_estimator(CityPipeline, X_test, y_test,
-                                                name="City", ax=ax)
-        euc_disp = RocCurveDisplay.from_estimator(EucPipeline, X_test, y_test,
-                                                name="Euc", ax=ax)
-        cor_disp = RocCurveDisplay.from_estimator(CorPipeline, X_test, y_test,
-                                                name="Cor", ax=ax)
-        cos_disp = RocCurveDisplay.from_estimator(CosPipeline, X_test, y_test,
-                                                name="Cos", ax=ax)
+        wdf_disp = RocCurveDisplay.from_estimator(WDFPipeline, X_test, y_test,
+                                                name="WDF", ax=ax)
+        wdtw_disp = RocCurveDisplay.from_estimator(WDDTWPipeline, X_test, y_test,
+                                                name="WDDTW", ax=ax)
 
         plt.axis('square')
         plt.ylabel('True Positive Rate')
