@@ -58,7 +58,7 @@ def window_disc_frechet(x, y, w=4):
             cost = abs(x[i] - y[j])
             dfre[i, j] = max(cost, min(dfre[i-1, j],
                                        dfre[i, j-1],
-                                       dfre[i-1, j-1])
+                                       dfre[i-1, j-1]))
 
     return dfre[n-1, m-1]
 

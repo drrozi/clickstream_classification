@@ -47,7 +47,7 @@ def courses(directory):
 
         # Create train and test data, 80:20
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-                                                            random_state=42, stratify=y)
+                                                            random_state=1971, stratify=None)
 
         # Classification pipelines
         nachbar = 1
@@ -60,15 +60,20 @@ def courses(directory):
         ChebPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='chebyshev'))])
         # kNN for Discrete Frechet
         DiscFrechetPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
-                                                                       metric=disc_frechet))])
+                                                                       metric=disc_frechet,
+                                                                       n_jobs=-1))])
         # kNN for Discrete Dynamic Time Warping
-        DiscDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric=disc_dtw))])
+        DiscDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
+                                                                   metric=disc_dtw,
+                                                                   n_jobs=-1))])
         # kNN for Discrete Frechet with traversal constraint
         WDFPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
-                                                               metric=window_disc_frechet))])
+                                                               metric=window_disc_frechet,
+                                                               n_jobs=-1))])
         # knn for DDTW with traversal constraint
         WDDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
-                                                                 metric=window_ddtw))])
+                                                                 metric=window_ddtw,
+                                                                 n_jobs=-1))])
 
 
         mypipeline = [CityPipeline, EucPipeline, ChebPipeline, DiscFrechetPipeline, DiscDTWPipeline,
