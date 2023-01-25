@@ -5,13 +5,17 @@ warnings.filterwarnings('ignore')
 import pandas as pd
 import numpy as np
 import Fred as fred
+import re
+import glob
+
+#from sklearnex import patch_sklearn
+#patch_sklearn()
+
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import RocCurveDisplay
 import matplotlib.pyplot as plt
-import re
-import glob
 from collections import defaultdict
 from my_dists import disc_dtw, disc_frechet, window_ddtw, window_disc_frechet
 
@@ -45,6 +49,9 @@ def courses(directory):
         nsamples, nx, ny = data.shape
         X = data.reshape((nsamples, nx*ny))
 
+        # logarithmic transformation
+        X = np.log1p(X)
+
         # Create train and test data, 80:20
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
                                                             random_state=1971, stratify=None)
@@ -58,14 +65,6 @@ def courses(directory):
         EucPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='euclidean'))])
         # kNN for Chebychev Distance 
         ChebPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar, metric='chebyshev'))])
-        # kNN for Discrete Frechet
-        DiscFrechetPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
-                                                                       metric=disc_frechet,
-                                                                       n_jobs=-1))])
-        # kNN for Discrete Dynamic Time Warping
-        DiscDTWPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
-                                                                   metric=disc_dtw,
-                                                                   n_jobs=-1))])
         # kNN for Discrete Frechet with traversal constraint
         WDFPipeline = Pipeline([('knn=1', KNeighborsClassifier(n_neighbors=nachbar,
                                                                metric=window_disc_frechet,
@@ -76,8 +75,7 @@ def courses(directory):
                                                                  n_jobs=-1))])
 
 
-        mypipeline = [CityPipeline, EucPipeline, ChebPipeline, DiscFrechetPipeline, DiscDTWPipeline,
-                      WDFPipeline, WDDTWPipeline]
+        mypipeline = [CityPipeline, EucPipeline, ChebPipeline, WDFPipeline, WDDTWPipeline]
 
         for mypipe in mypipeline:
             mypipe.fit(X_train, y_train)
@@ -91,10 +89,6 @@ def courses(directory):
                                                 name="Euclidean", ax=ax)
         che_disp = RocCurveDisplay.from_estimator(ChebPipeline, X_test, y_test,
                                                 name="Maximum", ax=ax)
-        fre_disp = RocCurveDisplay.from_estimator(DiscFrechetPipeline, X_test, y_test,
-                                                name="DF", ax=ax)
-        dtw_disp = RocCurveDisplay.from_estimator(DiscDTWPipeline, X_test, y_test,
-                                                name="DDTW", ax=ax)
         wdf_disp = RocCurveDisplay.from_estimator(WDFPipeline, X_test, y_test,
                                                 name="WDF", ax=ax)
         wdtw_disp = RocCurveDisplay.from_estimator(WDDTWPipeline, X_test, y_test,
@@ -113,5 +107,5 @@ def courses(directory):
 
 
 if __name__ == "__main__":
-   courses('/home/drazan/myproject/Labor/Labordaten/Test/OneD/oneD_Courses_txt/')
+    courses('/home/drazan/myproject/Labor/Labordaten/Test/OneD/oneD_Courses_txt/')
 

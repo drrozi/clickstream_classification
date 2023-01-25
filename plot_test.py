@@ -17,7 +17,7 @@ from my_dists import disc_dtw, disc_frechet, window_ddtw, window_disc_frechet
 
 def courses(directory):
 
-    for course in glob.glob(directory + '*'):
+    for course in glob.glob(directory + 'AAA2013J'):
         if course == directory + 'dataset.txt':
             continue
 
@@ -100,13 +100,13 @@ def courses(directory):
         wdtw_disp = RocCurveDisplay.from_estimator(WDDTWPipeline, X_test, y_test,
                                                 name="WDDTW", ax=ax)
 
-        wdtw_disp.figure_.set_size_inches(10,10)
+        wdf_disp.figure_.set_size_inches(10,10)
         plt.axis('square')
         ax.set_xlabel("False Positive Rate", fontsize = 30)
         ax.set_ylabel("True Positive Rate", fontsize = 30)
         plt.xticks(fontsize = 20)
         plt.yticks(fontsize = 20)
-        #plt.title("ROC - Vergleich für Kurs " + re.sub(directory, '', course), fontsize = 30)
+        # plt.title("ROC - Vergleich für Kurs " + re.sub(directory, '', course))
         plt.legend(loc='lower right', fontsize = 20)
         plt.plot([0, 1], [0, 1],'k:')
         plt.savefig(re.sub(directory,'', course) + '.pdf', dpi='figure', format='pdf', backend='pgf')
