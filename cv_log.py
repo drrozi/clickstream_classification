@@ -73,12 +73,13 @@ def courses(directory):
                      np.mean(scores['test_precision']), np.mean(scores['test_recall']),
                      np.mean(scores['test_f1'])]
 
-            df.loc[row, 0:] = score
+            df.loc[row, 0:] = round(score, 4)
 
             row = row + 1
 
-        print(re.sub(directory,'', course))
-        print(df.to_latex(index=False))
+        title = re.sub(directory, '', course)
+        print(title)
+        print(df.to_latex(index=False, caption=title))
 
 
 if __name__ == "__main__":
