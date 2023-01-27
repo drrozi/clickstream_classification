@@ -1,5 +1,3 @@
-
-
 import sys
 import warnings
 warnings.filterwarnings('ignore')
@@ -12,7 +10,7 @@ import re
 import matplotlib.pyplot as plt
 
 from collections import defaultdict
-from sklearn.model_selection import cross_validate, train_test_split
+from sklearn.model_selection import cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 from my_dists import disc_dtw, disc_frechet, window_ddtw, window_disc_frechet
 
@@ -46,10 +44,6 @@ def courses(directory):
         nsamples, nx, ny = data.shape
         X = data.reshape((nsamples, nx*ny))
 
-        # Create train and test data, 80:20
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-                                                            random_state=1971, stratify=None)
-
         # Classification 
         distances = {'Manhattan':'cityblock', 'Euclidean': 'euclidean', 'Maximum': 'chebyshev',
                      'DF': disc_frechet, 'DDTW': disc_dtw, 'WDF': window_disc_frechet, 'WDDTW': window_ddtw}
@@ -64,7 +58,7 @@ def courses(directory):
         row = 0
         for key, dist in distances.items():
             knn = KNeighborsClassifier(n_neighbors=nachbar, metric=dist, n_jobs=-1)
-            scores = cross_validate(knn, X_train, y_train, scoring=scoring, n_jobs=-1,
+            scores = cross_validate(knn, X, y, scoring=scoring, n_jobs=-1,
                                     cv=5, return_train_score=True)
             score = [key, np.mean(scores['test_accuracy']), np.mean(scores['test_roc_auc']),
                      np.mean(scores['test_precision']), np.mean(scores['test_recall']),
