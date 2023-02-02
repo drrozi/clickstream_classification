@@ -66,7 +66,7 @@ def courses(directory):
                      np.mean(scores['test_precision']), np.mean(scores['test_recall']),
                      np.mean(scores['test_f1'])]
 
-            df.loc[row, 0:] = round(score, 4)
+            df.loc[row, 0:] = score
 
             row = row + 1
 

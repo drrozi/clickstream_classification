@@ -1,0 +1,308 @@
+EEE2014J
+\begin{table}
+\centering
+\caption{EEE2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.905654 &  0.880914 &   0.95489 &  0.923991 &  0.939077 \\
+    WDDTW &  0.897588 &  0.871859 &  0.951601 &  0.916692 &  0.933592 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CCC2014B
+\begin{table}
+\centering
+\caption{CCC2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &   0.82025 &   0.81293 &  0.880999 &  0.837127 &  0.858445 \\
+    WDDTW &  0.828074 &  0.814366 &  0.874698 &  0.859717 &  0.866802 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FFF2014J
+\begin{table}
+\centering
+\caption{FFF2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &  roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.882226 &  0.86059 &  0.934432 &  0.905097 &  0.919458 \\
+    WDDTW &  0.866268 &  0.83799 &  0.921733 &   0.89616 &  0.908591 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EEE2013J
+\begin{table}
+\centering
+\caption{EEE2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.909568 &  0.900136 &  0.962042 &  0.917911 &  0.939386 \\
+    WDDTW &  0.915833 &  0.898579 &  0.958158 &  0.931012 &  0.944248 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+AAA2013J
+\begin{table}
+\centering
+\caption{AAA2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.860577 &  0.769949 &  0.939897 &  0.895455 &    0.9165 \\
+    WDDTW &  0.842067 &  0.740584 &  0.931552 &  0.881169 &  0.905185 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+EEE2014B
+\begin{table}
+\centering
+\caption{EEE2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.865258 &  0.861409 &  0.932426 &  0.871205 &  0.899993 \\
+    WDDTW &  0.882753 &  0.877583 &  0.938341 &  0.890649 &  0.913236 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BBB2013J
+\begin{table}
+\centering
+\caption{BBB2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.794683 &  0.788677 &  0.890044 &  0.804051 &  0.843991 \\
+    WDDTW &  0.823204 &  0.801573 &  0.884906 &  0.857279 &  0.870551 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BBB2013B
+\begin{table}
+\centering
+\caption{BBB2013B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &       f1 \\
+\midrule
+Manhattan &  0.828213 &  0.824165 &  0.895785 &   0.83684 &  0.86523 \\
+    WDDTW &  0.821645 &  0.802239 &  0.866669 &  0.863043 &  0.86468 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DDD2013B
+\begin{table}
+\centering
+\caption{DDD2013B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.792289 &  0.782202 &   0.81936 &  0.835294 &  0.827118 \\
+    WDDTW &  0.794689 &  0.788362 &  0.832161 &  0.821569 &  0.826644 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BBB2014J
+\begin{table}
+\centering
+\caption{BBB2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.803044 &   0.78413 &  0.910436 &   0.82087 &  0.863264 \\
+    WDDTW &  0.806329 &  0.762251 &   0.89121 &  0.847826 &  0.868914 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GGG2013J
+\begin{table}
+\centering
+\caption{GGG2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.832941 &  0.828731 &  0.913746 &  0.839439 &  0.874733 \\
+    WDDTW &  0.852941 &  0.838711 &  0.910312 &  0.874932 &  0.892127 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FFF2013B
+\begin{table}
+\centering
+\caption{FFF2013B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.843395 &  0.820686 &  0.870568 &  0.893884 &  0.881862 \\
+    WDDTW &   0.81994 &  0.807954 &  0.874865 &  0.846587 &  0.860332 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+AAA2014J
+\begin{table}
+\centering
+\caption{AAA2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &   recall &        f1 \\
+\midrule
+Manhattan &  0.849492 &  0.742078 &  0.924523 &  0.89749 &  0.909755 \\
+    WDDTW &  0.866271 &  0.715399 &  0.912587 &  0.93302 &  0.921659 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DDD2014B
+\begin{table}
+\centering
+\caption{DDD2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.847558 &  0.839885 &  0.899626 &  0.864342 &   0.88121 \\
+    WDDTW &  0.846188 &  0.834003 &  0.891457 &  0.872741 &  0.881714 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GGG2014J
+\begin{table}
+\centering
+\caption{GGG2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.813223 &  0.813394 &  0.923029 &  0.813151 &  0.864255 \\
+    WDDTW &  0.846281 &  0.822058 &  0.912692 &  0.873851 &  0.892487 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GGG2014B
+\begin{table}
+\centering
+\caption{GGG2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.852912 &  0.853736 &  0.925426 &  0.851338 &  0.886471 \\
+    WDDTW &  0.828758 &  0.830334 &  0.913379 &  0.826272 &  0.866378 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BBB2014B
+\begin{table}
+\centering
+\caption{BBB2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &   0.81251 &  0.813102 &  0.899058 &  0.811554 &   0.85258 \\
+    WDDTW &  0.796855 &  0.786047 &  0.871564 &  0.818403 &  0.842963 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DDD2014J
+\begin{table}
+\centering
+\caption{DDD2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.762609 &  0.745136 &  0.853726 &   0.79172 &  0.821125 \\
+    WDDTW &  0.752174 &  0.720526 &  0.831478 &  0.804275 &  0.817239 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FFF2014B
+\begin{table}
+\centering
+\caption{FFF2014B}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.858674 &  0.856718 &  0.909943 &  0.863922 &  0.886274 \\
+    WDDTW &  0.852806 &  0.851496 &  0.907816 &  0.856254 &  0.881117 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FFF2013J
+\begin{table}
+\centering
+\caption{FFF2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.862593 &  0.851744 &  0.914889 &  0.881279 &  0.897714 \\
+    WDDTW &  0.873826 &  0.860487 &  0.916999 &  0.896804 &  0.906617 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DDD2013J
+\begin{table}
+\centering
+\caption{DDD2013J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.808547 &  0.789998 &  0.864311 &  0.845557 &  0.854697 \\
+    WDDTW &  0.792437 &   0.77305 &  0.853928 &  0.831114 &   0.84229 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CCC2014J
+\begin{table}
+\centering
+\caption{CCC2014J}
+\begin{tabular}{llllll}
+\toprule
+ distance &  accuracy &   roc\_auc & precision &    recall &        f1 \\
+\midrule
+Manhattan &  0.786144 &  0.749577 &  0.864418 &  0.833332 &  0.848474 \\
+    WDDTW &   0.77198 &  0.738979 &  0.861125 &  0.814603 &  0.836664 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
