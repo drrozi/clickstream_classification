@@ -62,6 +62,9 @@ def window_disc_frechet(x, y, w=4):
 
     return dfre[n-1, m-1]
 
-
+# k-greatest-distances-Mahnhattandistanz
+def k_greatest_manhattan(x, y, w=20):
+    dists = np.abs(x - y)
+    return np.sum(np.sort(dists)[-w:][::-1])
 
 
