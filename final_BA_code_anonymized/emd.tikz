@@ -1,0 +1,47 @@
+\setstretch{1.5}
+\begin{align*} 
+\begin{NiceArray}{ c w{c}{5em} c }[first-col, last-col]
+ \Block{6-1}{\mtrx{v} =}
+ & 0.5    & %\Block{6-1}{\longrightarrow}
+ & 0   & \Block{6-1}{= \mtrx{w},} \\
+ & 0    &      & 0.5    & \\
+ & 0.2    &      & 0    & \\
+ & 0    &      & 0.2    & \\
+ & 0.3    &      & 0    & \\ 
+ & 0    &      & 0.3    & \\ 
+ \CodeAfter
+ \SubMatrix({1-1}{6-1})
+ \SubMatrix({1-3}{6-3})
+ \begin{tikzpicture}
+  \foreach \a/\b/\c in
+  {1/2/$f_{12}=0.5$, 3/4/$f_{34}=0.2$, 5/6/$f_{56}=0.3$} {
+   \draw[-stealth]
+   ([xshift=8pt]\a-1.east) -- ([xshift=-8pt]\b-3.west) node [pos=0.4, above, font=\footnotesize, sloped] {\c};
+  }
+ \end{tikzpicture}
+\end{NiceArray}&
+\qquad
+\begin{NiceArray}{ c w{c}{5em} c }[first-col, last-col]
+ \Block{6-1}{\mtrx{v} =}
+ & 0.5  & & 1.0 & \Block{6-1}{= \mtrx{w}'} \\
+ & 0    & & 0 & \\
+ & 0.2  & & 0 & \\
+ & 0    & & 0 & \\
+ & 0.3  & & 0 & \\ 
+ & 0    & & 0 & \\ 
+ \CodeAfter
+ \SubMatrix({1-1}{6-1})
+ \SubMatrix({1-3}{6-3})
+ \begin{tikzpicture}   
+  \draw[-stealth]
+  ([xshift=8pt]1-1.east) -- ([xshift=-8pt]1-3.west) node [pos=0.5, above, font=\footnotesize, sloped] {$f_{11}=0.5$};
+  \draw[-stealth]
+  ([xshift=8pt]3-1.east) -- ([xshift=-8pt]1-3.west) node [pos=0.4, above, font=\footnotesize, sloped] {$f_{31}=0.2$};
+  \draw[-stealth]
+  ([xshift=8pt]5-1.east) -- ([xshift=-8pt]1-3.west) node [pos=0.375, above, font=\footnotesize, sloped] {$f_{51}=0.3$};
+ \end{tikzpicture}
+\end{NiceArray}\\
+d_1(\mtrx{v},\mtrx{w}) = 2 &> 1 = d_1(\mtrx{v},\mtrx{w}') \\
+EMD(\mtrx{v},\mtrx{w}) = 1 &< 1.6 = EMD(\mtrx{v},\mtrx{w}')
+\end{align*}
+
