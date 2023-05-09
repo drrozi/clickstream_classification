@@ -126,17 +126,12 @@ def k_greatest_manhattan(x, y, w=6):
 from scipy.stats import wasserstein_distance
 
 def emd(u, v):
-    if u.sum() == 0:
-        return 0.001 #math.inf
-    elif v.sum() == 0:
-        return 0.001 #math.inf
-    else:
-        # create bin-vectors
-        bin_u = [i for i in range(0, len(u))]
-        bin_v = [i for i in range(0, len(v))]
+    # create bin-vectors
+    bin_u = [i for i in range(0, len(u))]
+    bin_v = [i for i in range(0, len(v))]
 
-        # normalize input vectors to unit-vectors
-        u_norm = u / np.linalg.norm(u, ord=1)
-        v_norm = v / np.linalg.norm(v, ord=1)
+    # normalize input vectors to unit-vectors
+    u_norm = u / np.linalg.norm(u, ord=1)
+    v_norm = v / np.linalg.norm(v, ord=1)
 
-        return wasserstein_distance(bin_u, bin_v, u_norm, v_norm)
+    return wasserstein_distance(bin_u, bin_v, u_norm, v_norm)
